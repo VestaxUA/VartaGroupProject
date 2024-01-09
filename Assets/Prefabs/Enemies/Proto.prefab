@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 76f5e561b742e89489491e151aba6e72, type: 2}
-  moveSpeed: 2
+  moveSpeed: 1.5
 --- !u!114 &1846122488254813870
 MonoBehaviour:
   m_ObjectHideFlags: 0
