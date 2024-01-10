@@ -29,51 +29,13 @@ public class RangeWeaponBehavior : MonoBehaviour
 
     public void DirectionChecker(Vector3 dir)
     {
-        direction = dir;
+        direction = dir.normalized;
 
-        float dirx = direction.x;
-        float diry = direction.y;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        Vector3 scale = transform.localScale;
-        Vector3 rotation = transform.rotation.eulerAngles;
-
-        if(dirx < 0 && diry == 0) // left
-        {
-            scale.x = scale.x * -1;
-            scale.y = scale.y * -1;
-        }
-        else if (dirx == 0 && diry  < 0) //down
-        {
-            scale.y = scale.y * -1;
-        }
-        else if (dirx == 0 && diry > 0) //up
-        {
-            scale.x = scale.x * -1;
-        }
-        else if (dirx > 0 && diry > 0) //right up
-        {
-            rotation.z = 0f;
-        }
-        else if (dirx > 0 && diry < 0) //right down
-        {
-            rotation.z = -90f;
-        }
-        else if (dirx < 0 && diry > 0) //left up
-        {
-            scale.x = scale.x * -1;
-            scale.y = scale.y * -1;
-            rotation.z = -90f;
-        }
-        else if (dirx < 0 && diry < 0) //left down
-        {
-            scale.x = scale.x * -1;
-            scale.y = scale.y * -1;
-            rotation.z = 0f;
-        }
-
-        transform.localScale = scale;
-        transform.rotation = Quaternion.Euler(rotation);
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90)); 
     }
+
 
     protected virtual void OnTriggerEnter2D(Collider2D col)
     {
